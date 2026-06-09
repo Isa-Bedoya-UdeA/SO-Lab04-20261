@@ -1,0 +1,10 @@
+# Ignorar carpetas .vscode y archivos de compilación de C que no tienen extensión
+
+.vscode/
+*.o
+*.out
+
+fib_serial
+fibonacci
+pi_p
+pi_s
