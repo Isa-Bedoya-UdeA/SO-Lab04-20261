@@ -3,6 +3,7 @@
 // Estrategia: Data Parallelism — el rango [0, n-1] se divide en T
 // sub-rangos; cada hilo calcula una suma parcial local (sin mutex)
 // y la retorna al hilo principal vía pthread_join.
+#define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

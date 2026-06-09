@@ -4,6 +4,7 @@
 //
 // F(-2) = 0, F(-1) = 1, F(n) = F(n-1) + F(n-2) para n >= 0.
 // Secuencia resultante: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

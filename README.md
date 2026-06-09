@@ -1,6 +1,7 @@
 # SO - Lab04 - 20261
 
 ## Equipo
+
 * Rafael Angel Alemán Castillo. [rafael.aleman@udea.edu.co](mailto:rafael.aleman@udea.edu.co). CC. 1001560844
 * Isabela Bedoya Gaviria. [isabela.bedoya@udea.edu.co](mailto:isabela.bedoya@udea.edu.co). CC. 1020106520
 
@@ -9,17 +10,26 @@
 ## Cómo ejecutar
 
 ### Requisitos previos
+
 * Sistema operativo Linux (o WSL en Windows).
 * GCC instalado (`gcc --version`).
 * `make` instalado (`make --version`).
 * Python 3 con `jupyter`, `pandas` y `matplotlib` para el notebook de análisis.
 
 ### Pasos para compilar y ejecutar
-```bash
-# 1. Entrar a la carpeta del proyecto
-cd SO-Lab04-20261
 
-# 2. Compilar todos los programas
+```bash
+# 1. Activar WSL (se puede saltar hasta el paso 4 si el SO es Linux)
+wsl
+
+# 2. Entrar a la ruta del proyecto
+cd ruta/donde/tienes/el/repo/clonado
+
+# 3. Abrir el editor de código en WSL (o se puede continuar desde la terminal)
+
+code .
+
+# 4. Compilar todos los programas (en la CMD, Powershell, o terminar directa de VSCode, por ejemplo)
 make
 
 # 3. Ejecutar la versión serial de π
@@ -31,11 +41,17 @@ make
 # 5. Generar los primeros 15 números de Fibonacci
 ./fibonacci 15
 
-# 6. Abrir el notebook de análisis
+# 6. Abrir el notebook de análisis, o si se tiene abierto el editor de código, ejecutar las celdas
 jupyter notebook analisis.ipynb
 
 # 7. Limpiar binarios
 make clean
+```
+
+### Si causa problemas por la descarga de librerias
+
+```bash
+sudo apt update && sudo apt install python3-pandas -y
 ```
 
 ---
@@ -44,7 +60,7 @@ make clean
 
 ### Estructura del proyecto
 
-```
+```plain text
 SO-Lab04-20261/
 ├── pi.c              # Cálculo serial de π
 ├── pi_p.c            # Cálculo paralelo de π con Pthreads
@@ -84,6 +100,7 @@ SO-Lab04-20261/
 ## Pruebas
 
 ### Compilación exitosa
+
 ```bash
 $ make
 gcc -Wall -Wextra -std=c11 -g -O2 -o pi_s pi.c -lpthread -lm
@@ -92,6 +109,7 @@ gcc -Wall -Wextra -std=c11 -g -O2 -o fibonacci fibonacci.c -lpthread
 ```
 
 ### Cálculo serial de π (n = 2×10⁹)
+
 ```bash
 $ ./pi_s 2000000000
 ===========================================
@@ -104,6 +122,7 @@ $ ./pi_s 2000000000
 ```
 
 ### Cálculo paralelo de π (n = 2×10⁹, T = 4)
+
 ```bash
 $ ./pi_p 2000000000 4
 ===========================================
@@ -117,6 +136,7 @@ $ ./pi_p 2000000000 4
 ```
 
 ### Generador de Fibonacci (N = 15)
+
 ```bash
 $ ./fibonacci 15
 ===========================================
@@ -128,6 +148,7 @@ $ ./fibonacci 15
 ```
 
 ### Manejo de errores
+
 ```bash
 $ ./pi_s
 Uso: ./pi_s <n_iteraciones>

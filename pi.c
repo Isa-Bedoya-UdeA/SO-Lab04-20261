@@ -2,6 +2,7 @@
 // Laboratorio 4 - Sección 1: Cálculo serial de π mediante integración numérica.
 // Aproxima π usando la regla del punto medio sobre la integral:
 //   ∫[0,1] 4/(1 + x^2) dx = π
+#define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
