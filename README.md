@@ -26,27 +26,28 @@ wsl
 cd ruta/donde/tienes/el/repo/clonado
 
 # 3. Abrir el editor de código en WSL (o se puede continuar desde la terminal)
-
 code .
 
-# 4. Compilar todos los programas (en la CMD, Powershell, o terminar directa de VSCode, por ejemplo)
-make
+# 4. Compilar todos los programas (desde la raíz del proyecto)
+make -C src
 
-# 3. Ejecutar la versión serial de π
-./pi_s 2000000000
+# 5. Ejecutar la versión serial de π
+./src/pi_s 2000000000
 
-# 4. Ejecutar la versión paralela de π (n=2000000000, T=4 hilos)
-./pi_p 2000000000 4
+# 6. Ejecutar la versión paralela de π (n=2000000000, T=4 hilos)
+./src/pi_p 2000000000 4
 
-# 5. Generar los primeros 15 números de Fibonacci
-./fibonacci 15
+# 7. Generar los primeros 15 números de Fibonacci
+./src/fibonacci 15
 
-# 6. Abrir el notebook de análisis, o si se tiene abierto el editor de código, ejecutar las celdas
+# 8. Abrir el notebook de análisis, o si se tiene abierto el editor de código, ejecutar las celdas
 jupyter notebook analisis.ipynb
 
-# 7. Limpiar binarios
-make clean
+# 9. Limpiar binarios
+make -C src clean
 ```
+
+> Nota: El notebook analisis.ipynb cambia automáticamente su directorio de trabajo a src/ al ejecutarse, por lo que no requiere configuración adicional.
 
 ### Si causa problemas por la descarga de librerias
 
@@ -62,12 +63,13 @@ sudo apt update && sudo apt install python3-pandas -y
 
 ```plain text
 SO-Lab04-20261/
-├── pi.c              # Cálculo serial de π
-├── pi_p.c            # Cálculo paralelo de π con Pthreads
-├── fibonacci.c       # Generador multihilo de Fibonacci
-├── analisis.ipynb    # Notebook de análisis y métricas
-├── Makefile          # Compilación automatizada
-└── README.md         # Este informe
+├── src/ # Códigos fuente y Makefile
+│ ├── pi.c # Cálculo serial de π
+│ ├── pi_p.c # Cálculo paralelo de π con Pthreads
+│ ├── fibonacci.c # Generador multihilo de Fibonacci
+│ └── Makefile # Compilación automatizada
+├── analisis.ipynb # Notebook de análisis y métricas
+└── README.md # Este informe
 ```
 
 ### `pi.c` — Cálculo serial de π
@@ -102,16 +104,18 @@ SO-Lab04-20261/
 ### Compilación exitosa
 
 ```bash
-$ make
+$ make -C src
+make: Entering directory '.../SO-Lab04-20261/src'
 gcc -Wall -Wextra -std=c11 -g -O2 -o pi_s pi.c -lpthread -lm
 gcc -Wall -Wextra -std=c11 -g -O2 -o pi_p pi_p.c -lpthread -lm
 gcc -Wall -Wextra -std=c11 -g -O2 -o fibonacci fibonacci.c -lpthread
+make: Leaving directory '.../SO-Lab04-20261/src'
 ```
 
 ### Cálculo serial de π (n = 2×10⁹)
 
 ```bash
-$ ./pi_s 2000000000
+$ ./src/pi_s 2000000000
 ===========================================
   Cálculo SERIAL de π
 ===========================================
@@ -124,7 +128,7 @@ $ ./pi_s 2000000000
 ### Cálculo paralelo de π (n = 2×10⁹, T = 4)
 
 ```bash
-$ ./pi_p 2000000000 4
+$ ./src/pi_p 2000000000 4
 ===========================================
   Cálculo PARALELO de π
 ===========================================
@@ -138,7 +142,7 @@ $ ./pi_p 2000000000 4
 ### Generador de Fibonacci (N = 15)
 
 ```bash
-$ ./fibonacci 15
+$ ./src/fibonacci 15
 ===========================================
   Secuencia de Fibonacci (N = 15)
 ===========================================
@@ -150,16 +154,16 @@ $ ./fibonacci 15
 ### Manejo de errores
 
 ```bash
-$ ./pi_s
+$ ./src/pi_s
 Uso: ./pi_s <n_iteraciones>
 
-$ ./pi_p 100
+$ ./src/pi_p 100
 Uso: ./pi_p <n_iteraciones> <num_hilos>
 
-$ ./fibonacci
+$ ./src/fibonacci
 Uso: ./fibonacci <N>
 
-$ ./pi_s -5
+$ ./src/pi_s -5
 Error: n debe ser un entero positivo.
 ```
 
