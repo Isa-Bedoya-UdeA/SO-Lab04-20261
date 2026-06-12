@@ -181,7 +181,7 @@ Error: n debe ser un entero positivo.
 
 ## Video
 
-[Fallback Video]
+[https://drive.google.com/file/d/1MMAPHbqEcPM6XxlKjq_IV9GmEk8TuwLZ/view?usp=sharing](https://drive.google.com/file/d/1MMAPHbqEcPM6XxlKjq_IV9GmEk8TuwLZ/view?usp=sharing)
 
 > **Contenido del video:** (1) Estrategia de paralelización en `pi_p.c`; (2) paso de parámetros y sincronización en `fibonacci.c`; (3) demostración en vivo; (4) análisis del gráfico de Speedup y conclusiones.
 
